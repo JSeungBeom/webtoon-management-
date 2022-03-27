@@ -44,21 +44,28 @@ input[type="text"]{
 <link rel="stylesheet" type="text/css" href="basic.css">
 </head>
 <body>
+<!-- 머리글 영역 -->	
 <header>
+	<!-- 홈 버튼 -->
 	<img src="images/home.png" alt="홈으로" usemap="#tohome">
 	<map name="tohome">
 		<area shape="rect" coords="0, 0, 57, 52" alt="홈으로" href="index.html">
 	</map>
+	<!-- 카테고리 관리 버튼 -->
 	<div id="manage">
 		<a href="AdConfig.html">카테고리 관리</a>
 	</div>
+	<!-- 제목 -->
 	<div id="title">
 		Webtoon World
 	</div>
+	<!-- 검색 -->
 	<input type="text" name="search" style="width:10%">
 	<img src="images/search.png" alt="검색">
 </header>
+<!-- 메뉴 -->
 <nav>
+	<!-- 로그인 & 메뉴 -->
 	<form action="#" method="post" NAME="login">
 		<fieldset>
 			<legend>Login</legend>
@@ -69,6 +76,7 @@ input[type="text"]{
 			<input type="submit" name="idpwd" value = "확인">
 		</fieldset>
 	</form>
+	<!-- 메뉴 -->
 	<ul>
 		<li><a href="index.html">전체 보기</a></li>
 		<li><a>액션</a></li>
@@ -77,7 +85,9 @@ input[type="text"]{
 		<li><a>코믹</a></li>
 	</ul>
 </nav>
+<!-- 글 영역 -->
 <article>
+<!-- 글 쓰기 -->
 <form action="#" method="get" name="frm1">
 	<table border="1">
 		<tr>
@@ -110,30 +120,34 @@ input[type="text"]{
 		</tr>
 	</table>
 </form>
+<!-- 이미지 업로드 -->
 <div class="myclass1">
 	<form action="#" enctype="multipart/form-data">
 		<input style = "position:absolute; bottom:0px;" 
 		type="file" accept="image/jpg, image/gif" name="image" value="업로드/변경">
 	</form>
 </div>
+<!-- 메인 영역 -->
 <main>
 	<div class="myclass2">
 		줄거리
 	</div>
+	<!-- 비밀번호 입력 -->
 	<div class="myclass2" style="position:absolute; right:20%">
 		비밀번호
 		<form action="#" method="get" name="postfrm1" style="display:inline-block">
 			<input type="password" name="postpwd">
 		</form>
 	</div>
+	<!-- 만화 영역 -->
 	<div id="container1">
 	</div>
+	<!-- 등록 & 취소 -->
 	<form action="#" method="get" name="postfrm2" style="position:absolute;bottom:0px;right:20%;">
 		<input type="submit" name="postconfirm" value="등록">
 		<input type="reset" name="postcancel" value="취소">
 	</form>
 </main>
 </article>
-
 </body>
 </html>
