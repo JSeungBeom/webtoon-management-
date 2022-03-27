@@ -2,9 +2,64 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Webtoon World</title>
+<style>
+article{
+	position:relative;
+	display:table-cell;
+	width:80%;
+	height:800px;
+	border:1px solid black;
+}
+
+#insert{
+	background-color:lightgray;
+	position:absolute;
+	top:5px;
+	right:5px;
+	border:3px solid black;
+	width:5%;
+	text-align:center;
+}
+</style>
+ <link rel="stylesheet" type="text/css" href="basic.css">
 </head>
 <body>
-dd
+<header>
+	<img src="images/home.png" alt="홈으로" usemap="#tohome">
+	<map name="tohome">
+		<area shape="rect" coords="0, 0, 57, 52" alt="홈으로" href="index.html">
+	</map>
+	<div id="manage">
+		<a href="AdConfig.html">카테고리 관리</a>
+	</div>
+	<div id="title">
+		Webtoon World
+	</div>
+	<input type="text" name="search" style="width:10%">
+	<img src="images/search.png" alt="검색">
+</header>
+<nav>
+	<form action="#" method="post" name="login">
+		<fieldset>
+			<legend>Login</legend>
+			ID<br>
+			<input type="text"name="id"><br>
+			Password<br>
+			<input type="password" name="pwd"><br>
+			<input type="submit" name="loginconfirm" value = "확인">
+		</fieldset>
+	</form>
+	<ul>
+		<li><a href="index.html">전체 보기</a></li>
+		<li><a>액션</a></li>
+		<li><a>로맨스</a></li>
+		<li><a>SF</a></li>
+		<li><a>코믹</a></li>
+	</ul>
+</nav>
+<article>
+	<div id="insert"><a href="Input1.html" target="_blank">등록하기</a></div>
+</article>
 </body>
 </html>
