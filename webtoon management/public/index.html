@@ -6,10 +6,13 @@
 <style>
 article{
 	position:relative;
+	left:50px;
 	display:table-cell;
 	width:80%;
 	height:800px;
 	border:1px solid black;
+	border-radius:5px;
+	background-color:#e6faff;
 }
 
 #insert{
@@ -20,6 +23,9 @@ article{
 	border:3px solid black;
 	width:5%;
 	text-align:center;
+}
+input{
+	font-family:"굴림", serif;
 }
 </style>
  <link rel="stylesheet" type="text/css" href="./basic.css">
@@ -40,7 +46,7 @@ article{
 		Webtoon World
 	</div>
 	<!-- 검색 -->
-	<input type="text" name="search" style="width:10%">
+	<input type="text" name="search">
 	<img src="./images/search.png" alt="검색">
 </header>
 
@@ -69,7 +75,7 @@ article{
 <!-- 글 영역 -->
 <article>
 	<!-- 등록 버튼 -->
-	<div id="insert"><a href="./Input1.html" target="_blank">등록하기</a></div>
+	<div id="insert" style="background-color:white; border-radius:5px;"><a href="./Input1.html" target="_blank">등록하기</a></div>
 </article>
 </body>
 </html>

@@ -8,16 +8,19 @@ article{
 	position:relative;
 	display:table-cell;
 	width:80%;
-	border:1px solid black;
+	border-radius:5px;
+	padding-left:50px;
 }
 table{
 	position:absolute;
 	top:0px;
-	left:0px;
 	border-collapse:collapse;
-	width:85%;
+	width:75%;
 }
-input[type="text"]{
+input{
+	font-family:"굴림", serif;
+}
+td input[type="text"]{
 	width:90%;
 }
 #container1{
@@ -29,7 +32,7 @@ input[type="text"]{
 .myclass1{
 	position:absolute;
 	top:0px;
-	right:0px;
+	right:30px;
 	width:15%;
 	height:150px;
 	border:1px solid black;
@@ -60,7 +63,7 @@ input[type="text"]{
 		Webtoon World
 	</div>
 	<!-- 검색 -->
-	<input type="text" name="search" style="width:10%">
+	<input type="text" name="search">
 	<img src="./images/search.png" alt="검색">
 </header>
 <!-- 메뉴 -->
@@ -91,14 +94,14 @@ input[type="text"]{
 <form action="#" method="get" name="frm1">
 	<table border="1">
 		<tr>
-			<th colspan="2">글 쓰기</th>
+			<th colspan="2" style="background-color:#e6faff;">글 쓰기</th>
 		</tr>
 		<tr>
-			<td>타이틀</td>
+			<td style="background-color:#e6faff;">타이틀</td>
 			<td><input type="text" name="title"></td>
 		</tr>
 		<tr>
-			<td>장르</td>
+			<td style="background-color:#e6faff;">장르</td>
 			<td>
 				<select name="genre" style="width:100%">
 					<optgroup label="장르">
@@ -111,11 +114,11 @@ input[type="text"]{
 			</td>
 		</tr>
 		<tr>
-			<td>작가 명</td>
+			<td style="background-color:#e6faff;">작가 명</td>
 			<td><input type="text" name="author"></td>
 		</tr>
 		<tr>
-			<td>작가의 말</td>
+			<td style="background-color:#e6faff;">작가의 말</td>
 			<td><input type="text" name="authorsay"></td>
 		</tr>
 	</table>

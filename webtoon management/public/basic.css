@@ -1,32 +1,44 @@
 @charset "UTF-8";
 * {
-	font-family:"바탕", serif;
+	font-family:"HYHeadLine", serif;
 } /* 글 전체 */
+
 #manage{
+	border-radius:5px;
 	font-size:14px;
 	border:3px solid black;
 	width:7%;
 	text-align:center;
-	background-color:lightgray;
 } /* 카테고리 관리 */
+
+input[name="search"]{
+		width:10%;
+		margin-left:120px;
+}
 #title{
-	background-color:#e6f9ff;
-	margin-left:200px;
+	background-color:#99d6ff;
+	margin-left:80px;
+	font-family:"Algerian", serif;
 	margin-bottom:15px;
 	text-align:center;
 	font-size:30px;
 	padding:5px;
 	width:60%;
-	border:3px ridge #b3edff;
-} /* 제목 */
+	border:3px ridge #b3e0ff;
+	border-radius:25px;
+}  /* 제목 */
+
+
 a:link{
 		color:black;
 		text-decoration:none;
 } /* 링크 클릭하지 않았을 때 */
 
+a:visited{
+	color:black;
+}
 a:hover{
 	font-weight:bold;
-	text-decoration:underline;
 } /* 링크에 마우스를 올려놓았을 때 */
 
 
@@ -35,8 +47,8 @@ header div{
 }
 
 fieldset{
-	background-color:#e6ffe6;
 	font-size:14px;
+	border-radius:25px;
 }
 
 ul{
@@ -46,11 +58,13 @@ ul{
 }
 
 li{
-	border:3px outset #b3edff;
+	color:white;
+	border-radius:10px;
+	border:3px groove #b3e0ff;
 	margin-bottom:15px;
 	padding:5px;
 	text-align:center;
-	background-color:#e6f9ff;
+	background-color: #99d6ff;
 
 }
 nav{
