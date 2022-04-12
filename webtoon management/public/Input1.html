@@ -26,8 +26,6 @@ td input[type="text"]{
 }
 #container1{
 	width:80%;
-	margin-right:20%;
-	border:1px solid black;
 	height:300px;
 }
 .myclass1{
@@ -48,7 +46,36 @@ option{
 	font-weight:bold;
 }
 </style>
-
+<script>
+	window.onload = function(){
+		document.getElementById("postfrm").onsubmit = function(){
+			var str="";
+			var obj = document.getElementById("posttitle");
+			str += "타이틀 : " + obj.value +  "\n";
+			
+			obj = document.getElementById("postgenre");
+			str += "장르 : " + obj.value + "\n";
+			
+			obj = document.getElementById("author");
+			str += "작가 명 : " + obj.value + "\n";
+			
+			obj = document.getElementById("authorsay");
+			str += "작가의 말 : " + obj.value + "\n";
+			
+			obj = document.getElementById("postimg");
+			str += "이미지 명 : " + obj.value + "\n";
+			
+			obj = document.getElementById("postpwd");
+			str += "비밀번호 : " + obj.value + "\n";
+			
+			obj = document.getElementById("postsummary");
+			str += "줄거리 : " + obj.value + "\n";
+			
+			alert(str);
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 <!-- 머리글 영역 -->	
@@ -95,19 +122,19 @@ option{
 <!-- 글 영역 -->
 <article>
 <!-- 글 쓰기 -->
-<form action="#" method="get" name="frm1">
+<form action="#" method="get" name="postfrm" id = "postfrm">
 	<table border="1">
 		<tr>
 			<th colspan="2" style="background-color:#e6faff;">글 쓰기</th>
 		</tr>
 		<tr>
 			<td style="background-color:#e6faff;">타이틀</td>
-			<td><input type="text" name="title"></td>
+			<td><input type="text" name="posttitle" id="posttitle"></td>
 		</tr>
 		<tr>
 			<td style="background-color:#e6faff;">장르</td>
 			<td>
-				<select name="genre" style="width:100%">
+				<select name="postgenre" id = "postgenre" style="width:100%">
 					<optgroup label="장르">
 						<option value="액션">액션</option>
 						<option value="로맨스">로맨스</option>
@@ -119,42 +146,33 @@ option{
 		</tr>
 		<tr>
 			<td style="background-color:#e6faff;">작가 명</td>
-			<td><input type="text" name="author"></td>
+			<td><input type="text" id="author" name="author"></td>
 		</tr>
 		<tr>
 			<td style="background-color:#e6faff;">작가의 말</td>
-			<td><input type="text" name="authorsay"></td>
+			<td><input type="text" id="authorsay" name="authorsay"></td>
 		</tr>
 	</table>
-</form>
 <!-- 이미지 업로드 -->
 <div class="myclass1">
-	<form action="#" enctype="multipart/form-data">
 		<input style = "position:absolute; bottom:0px;" 
-		type="file" accept="image/jpg, image/gif" name="image" value="업로드/변경">
-	</form>
+		type="file" accept="image/jpg, image/gif" id = "postimg" name="postimg" value="업로드/변경">
 </div>
-<!-- 메인 영역 -->
-<main>
 	<div class="myclass2">
 		줄거리
 	</div>
 	<!-- 비밀번호 입력 -->
-	<div class="myclass2" style="position:absolute; right:20%">
-		비밀번호
-		<form action="#" method="get" name="postfrm1" style="display:inline-block">
-			<input type="password" name="postpwd">
-		</form>
+	<div class="myclass2" style="position:absolute; right:19%">
+		비밀번호 <input type="password" name="postpwd" id = "postpwd">
 	</div>
 	<!-- 만화 영역 -->
 	<div id="container1">
+		<textarea rows="20" style="width:100%; font-family:굴림체, serif" id = "postsummary"></textarea>
 	</div>
 	<!-- 등록 & 취소 -->
-	<form action="#" method="get" name="postfrm2" style="position:absolute;bottom:0px;right:20%;">
-		<input type="submit" name="postconfirm" value="등록">
-		<input type="reset" name="postcancel" value="취소">
-	</form>
-</main>
+		<input type="submit" name="postconfirm" value="등록" style="margin-top:5px;">
+		<input type="reset" name="postcancel" value="취소" style="margin-top:5px;">
+</form>
 </article>
 </body>
 </html>
