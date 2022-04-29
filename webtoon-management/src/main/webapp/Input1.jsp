@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,7 +74,7 @@ option{
 			str += "줄거리 : " + obj.value + "\n";
 			
 			alert(str);
-			return false;
+			return true;
 		}
 	}
 </script>
@@ -100,7 +102,7 @@ option{
 <!-- 메뉴 -->
 <nav>
 	<!-- 로그인 & 메뉴 -->
-	<form action="#" method="post" NAME="login">
+	<form action="#" method="post" name="login">
 		<fieldset>
 			<legend>Login</legend>
 			ID<br>
@@ -122,7 +124,7 @@ option{
 <!-- 글 영역 -->
 <article>
 <!-- 글 쓰기 -->
-<form action="ID-list.jpg" method="get" name="postfrm" id = "postfrm">
+<form action="ID-list.jsp" method="post" name="postfrm" id = "postfrm">
 	<table border="1">
 		<tr>
 			<th colspan="2" style="background-color:#e6faff;">글 쓰기</th>
@@ -136,10 +138,10 @@ option{
 			<td>
 				<select name="postgenre" id = "postgenre" style="width:100%">
 					<optgroup label="장르">
-						<option value="액션">액션</option>
-						<option value="로맨스">로맨스</option>
-						<option value="SF">SF</option>
-						<option value="코믹">코믹</option>
+						<option value="0">액션</option>
+						<option value="1">로맨스</option>
+						<option value="2">SF</option>
+						<option value="3">코믹</option>
 					</optgroup>
 				</select>
 			</td>
@@ -167,7 +169,7 @@ option{
 	</div>
 	<!-- 만화 영역 -->
 	<div id="container1">
-		<textarea rows="20" style="width:100%; font-family:굴림체, serif" id = "postsummary"></textarea>
+		<textarea rows="20" style="width:100%; font-family:굴림체, serif" name = "postsummary" id = "postsummary"></textarea>
 	</div>
 	<!-- 등록 & 취소 -->
 		<input type="submit" name="postconfirm" value="등록" style="margin-top:5px;">
