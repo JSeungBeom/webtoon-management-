@@ -35,7 +35,7 @@ td input[type="text"]{
 	top:0px;
 	right:30px;
 	width:15%;
-	height:150px;
+	height:250px;
 	border:1px solid black;
 }
 .myclass2{

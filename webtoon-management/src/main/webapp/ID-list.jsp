@@ -17,6 +17,16 @@ article{
 	border-radius:5px;
 	background-color:#e6faff;
 }
+.myclass1{
+	background-color:white;
+	display:table-cell;
+	position:absolute;
+	top:30px;
+	right:30px;
+	width:15%;
+	height:250px;
+	border:1px solid black;
+}
 input{
 	font-family:"굴림", serif;
 }
@@ -134,9 +144,14 @@ window.onload = function(){
 		</tr>
 		<tr>
 			<td style = "background-color:#e6faff;">줄거리</td>
-			<td><textarea rows="10" style="width:99%; font-family:굴림체, serif" name = "postsummary" id = "postsummary"><%=psummary%></textarea></td>
+			<td><textarea rows="10" style="width:99%; font-family:굴림체, serif" name = "postsummary" id = "postsummary" disabled><%=psummary%></textarea></td>
 		</tr>
 	</table>
+	<!-- 이미지 업로드 -->
+<div class="myclass1">
+		<input style = "position:absolute; bottom:0px;" 
+		type="file" accept="image/jpg, image/gif" id = "postimg" name="postimg" value="업로드/변경" disabled>
+</div>
 </article>
 </body>
 </html>
