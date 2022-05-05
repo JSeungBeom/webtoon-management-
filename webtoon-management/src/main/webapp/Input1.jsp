@@ -15,7 +15,6 @@ article{
 	padding-left:50px;
 }
 table{
-	position:absolute;
 	top:0px;
 	border-collapse:collapse;
 	width:75%;
@@ -39,6 +38,7 @@ td input[type="text"]{
 	border:1px solid black;
 }
 .myclass2{
+	margin-top:10px;
 	display:inline-block;
 	text-align:center;
 	border:1px solid black;
@@ -131,7 +131,7 @@ option{
 		</tr>
 		<tr>
 			<td style="background-color:#e6faff;">타이틀</td>
-			<td><input type="text" name="posttitle" id="posttitle"></td>
+			<td><input type="text" name="posttitle" id="posttitle" required></td>
 		</tr>
 		<tr>
 			<td style="background-color:#e6faff;">장르</td>
@@ -148,29 +148,29 @@ option{
 		</tr>
 		<tr>
 			<td style="background-color:#e6faff;">작가 명</td>
-			<td><input type="text" id="author" name="author"></td>
+			<td><input type="text" id="author" name="author" required></td>
 		</tr>
 		<tr>
 			<td style="background-color:#e6faff;">작가의 말</td>
-			<td><input type="text" id="authorsay" name="authorsay"></td>
+			<td><input type="text" id="authorsay" name="authorsay" required></td>
 		</tr>
 	</table>
-<!-- 이미지 업로드 -->
+	<div class="myclass2">
+		줄거리
+	</div>
+		<!-- 비밀번호 입력 -->
+	<div class="myclass2" style="position:absolute; right:19%">
+		비밀번호 <input type="password" name="postpwd" id = "postpwd" required>
+	</div>
+	<!-- 만화 영역 -->
+	<div id="container1">
+		<textarea rows="20" style="width:100%; font-family:굴림체, serif" name = "postsummary" id = "postsummary" required></textarea>
+	</div>
+	<!-- 이미지 업로드 -->
 <div class="myclass1">
 		<input style = "position:absolute; bottom:0px;" 
 		type="file" accept="image/jpg, image/gif" id = "postimg" name="postimg" value="업로드/변경">
 </div>
-	<div class="myclass2">
-		줄거리
-	</div>
-	<!-- 비밀번호 입력 -->
-	<div class="myclass2" style="position:absolute; right:19%">
-		비밀번호 <input type="password" name="postpwd" id = "postpwd">
-	</div>
-	<!-- 만화 영역 -->
-	<div id="container1">
-		<textarea rows="20" style="width:100%; font-family:굴림체, serif" name = "postsummary" id = "postsummary"></textarea>
-	</div>
 	<!-- 등록 & 취소 -->
 		<input type="submit" name="postconfirm" value="등록" style="margin-top:5px;">
 		<input type="reset" name="postcancel" value="취소" style="margin-top:5px;">

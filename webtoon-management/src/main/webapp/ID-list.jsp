@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+	String pgenre = request.getParameter("postgenre");
+	String ptitle = request.getParameter("posttitle");
+	String pauthor = request.getParameter("author");
+	String pauthorsay = request.getParameter("authorsay");
+	String psummary = request.getParameter("postsummary");
+%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,14 +61,6 @@ table{
 	width:75%;
 }
 </style>
-<%
-	request.setCharacterEncoding("utf-8");
-	String pgenre = request.getParameter("postgenre");
-	String ptitle = request.getParameter("posttitle");
-	String pauthor = request.getParameter("author");
-	String pauthorsay = request.getParameter("authorsay");
-	String psummary = request.getParameter("postsummary");
-%>	
 <script>
 window.onload = function(){
 	document.getElementById("postgenre").selectedIndex = <%=pgenre%>;
@@ -72,7 +72,7 @@ window.onload = function(){
 <header>
 	<!-- 홈 -->
 	<img src="./images/home.png" alt="홈으로" usemap="#tohome">
-	<map name="tohome">
+	<map name="tohome">	
 		<area shape="rect" coords="0, 0, 57, 52" alt="홈으로" href="./index.html">
 	</map>
 	<!-- 카테고리 관리 -->
