@@ -1,0 +1,73 @@
+@charset "UTF-8";
+* {
+	font-family:"HYHeadLine", serif;
+} /* 글 전체 */
+
+#manage{
+	border-radius:5px;
+	font-size:14px;
+	border:3px solid black;
+	width:7%;
+	text-align:center;
+} /* 카테고리 관리 */
+
+input[name="search"]{
+		width:10%;
+		margin-left:120px;
+}
+#title{
+	background-color:#99d6ff;
+	margin-left:80px;
+	font-family:"Algerian", serif;
+	margin-bottom:15px;
+	text-align:center;
+	font-size:30px;
+	padding:5px;
+	width:60%;
+	border:3px ridge #b3e0ff;
+	border-radius:25px;
+}  /* 제목 */
+
+
+a:link{
+		color:black;
+		text-decoration:none;
+} /* 링크 클릭하지 않았을 때 */
+
+a:visited{
+	color:black;
+}
+a:hover{
+	font-weight:bold;
+} /* 링크에 마우스를 올려놓았을 때 */
+
+
+header div{
+	display:inline-block;
+}
+
+fieldset{
+	font-size:14px;
+	border-radius:25px;
+}
+
+ul{
+	list-style-type:none;
+	margin:20px;
+	padding:0px;
+}
+
+li{
+	color:white;
+	border-radius:10px;
+	border:3px groove #b3e0ff;
+	margin-bottom:15px;
+	padding:5px;
+	text-align:center;
+	background-color: #99d6ff;
+
+}
+nav{
+	display:table-cell;
+	width:10%;
+}
