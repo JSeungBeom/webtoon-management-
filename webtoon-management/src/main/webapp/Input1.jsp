@@ -47,6 +47,9 @@ option{
 	font-family:"굴림";
 	font-weight:bold;
 }
+fieldset{
+	width:155px;
+}
 </style>
 <script>
 	window.onload = function(){
@@ -88,9 +91,15 @@ option{
 		<area shape="rect" coords="0, 0, 57, 52" alt="홈으로" href="./index.jsp">
 	</map>
 	<!-- 카테고리 관리 버튼 -->
+	<%if(session.getAttribute("id") == null) {%>
+	<div id="manage" style="visibility:hidden;">
+		<a href="./AdConfig.jsp">카테고리 관리</a>
+	</div>
+	<%} else{ %>
 	<div id="manage">
 		<a href="./AdConfig.jsp">카테고리 관리</a>
 	</div>
+	<%} %>
 	<!-- 제목 -->
 	<div id="title">
 		Webtoon World
@@ -99,27 +108,26 @@ option{
 	<input type="text" name="search">
 	<img src="./images/search.png" alt="검색">
 </header>
-<!-- 메뉴 -->
+<!-- 로그인 & 메뉴 -->
 <nav>
-	<!-- 로그인 & 메뉴 -->
-	<form action="#" method="post" name="login">
+	<!-- 로그인-->
+	<%if(session.getAttribute("id") == null) {%>
+	<form action="member_ok.jsp" method="post" name="login">
 		<fieldset>
 			<legend>Login</legend>
 			ID<br>
 			<input type="text"name="id"><br>
 			Password<br>
 			<input type="password" name="pwd"><br>
-			<input type="submit" name="idpwd" value = "확인">
+			<input type="submit" name="loginconfirm" value = "확인">
 		</fieldset>
 	</form>
-	<!-- 메뉴 -->
-	<ul>
-		<li><a href="./index.jsp">전체 보기</a></li>
-		<li><a>액션</a></li>
-		<li><a>로맨스</a></li>
-		<li><a>SF</a></li>
-		<li><a>코믹</a></li>
-	</ul>
+	<%} else { %>
+		<fieldset style="text-align:center; height:120px;">
+			<a href="logout.jsp" style="color:red;"><br><br><br>
+			Admin Logout</a>
+		</fieldset>
+	<% } %>
 </nav>
 <!-- 글 영역 -->
 <article>

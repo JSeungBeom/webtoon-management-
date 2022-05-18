@@ -60,6 +60,9 @@ table{
 	border-collapse:collapse;
 	width:75%;
 }
+fieldset{
+	width:155px;
+}
 </style>
 <script>
 window.onload = function(){
@@ -76,9 +79,15 @@ window.onload = function(){
 		<area shape="rect" coords="0, 0, 57, 52" alt="홈으로" href="./index.jsp">
 	</map>
 	<!-- 카테고리 관리 -->
-	<div id="manage">
-		<a href="./AdConfig.html">카테고리 관리</a>
+	<%if(session.getAttribute("id") == null) {%>
+	<div id="manage" style="visibility:hidden;">
+		<a href="./AdConfig.jsp">카테고리 관리</a>
 	</div>
+	<%} else{ %>
+	<div id="manage">
+		<a href="./AdConfig.jsp">카테고리 관리</a>
+	</div>
+	<%} %>
 	<div id="title">
 		Webtoon World
 	</div>
@@ -90,7 +99,8 @@ window.onload = function(){
 <!-- 로그인 & 메뉴 -->
 <nav>
 	<!-- 로그인 --> 
-	<form action="#" method="post" name="login">
+	<%if(session.getAttribute("id") == null) {%>
+	<form action="member_ok.jsp" method="post" name="login">
 		<fieldset>
 			<legend>Login</legend>
 			ID<br>
@@ -100,6 +110,12 @@ window.onload = function(){
 			<input type="submit" name="loginconfirm" value = "확인">
 		</fieldset>
 	</form>
+	<%} else { %>
+		<fieldset style="text-align:center; height:120px;">
+			<a href="logout.jsp" style="color:red;"><br><br><br>
+			Admin Logout</a>
+		</fieldset>
+	<% } %>
 </nav>
 <!-- 글 영역 -->
 <article>

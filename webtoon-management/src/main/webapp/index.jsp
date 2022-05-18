@@ -43,12 +43,18 @@ fieldset{
 	<!-- 홈 -->
 	<img src="./images/home.png" alt="홈으로" usemap="#tohome">
 	<map name="tohome">
-		<area shape="rect" coords="0, 0, 57, 52" alt="홈으로" href="./index.html">
+		<area shape="rect" coords="0, 0, 57, 52" alt="홈으로" href="./index.jsp">
 	</map>
 	<!-- 카테고리 관리 -->
+	<%if(session.getAttribute("id") == null) {%>
+	<div id="manage" style="visibility:hidden;">
+		<a href="./AdConfig.jsp">카테고리 관리</a>
+	</div>
+	<%} else{ %>
 	<div id="manage">
 		<a href="./AdConfig.jsp">카테고리 관리</a>
 	</div>
+	<%} %>
 	<div id="title">
 		Webtoon World
 	</div>
@@ -59,8 +65,9 @@ fieldset{
 
 <!-- 로그인 & 메뉴 -->
 <nav>
-<%if(session.getAttribute("id") == null) {%>
+
 	<!-- 로그인 --> 
+	<%if(session.getAttribute("id") == null) {%>
 	<form action="member_ok.jsp" method="post" name="login">
 		<fieldset>
 			<legend>Login</legend>
