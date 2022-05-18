@@ -73,7 +73,7 @@ window.onload = function(){
 	<!-- 홈 -->
 	<img src="./images/home.png" alt="홈으로" usemap="#tohome">
 	<map name="tohome">	
-		<area shape="rect" coords="0, 0, 57, 52" alt="홈으로" href="./index.html">
+		<area shape="rect" coords="0, 0, 57, 52" alt="홈으로" href="./index.jsp">
 	</map>
 	<!-- 카테고리 관리 -->
 	<div id="manage">
@@ -100,14 +100,6 @@ window.onload = function(){
 			<input type="submit" name="loginconfirm" value = "확인">
 		</fieldset>
 	</form>
-	<!-- 메뉴 -->
-	<ul>
-		<li><a href="./index.html">전체 보기</a></li>
-		<li><a>액션</a></li>
-		<li><a>로맨스</a></li>
-		<li><a>SF</a></li>
-		<li><a>코믹</a></li>
-	</ul>
 </nav>
 <!-- 글 영역 -->
 <article>

@@ -85,11 +85,11 @@ option{
 	<!-- 홈 버튼 -->
 	<img src="./images/home.png" alt="홈으로" usemap="#tohome">
 	<map name="tohome">
-		<area shape="rect" coords="0, 0, 57, 52" alt="홈으로" href="./index.html">
+		<area shape="rect" coords="0, 0, 57, 52" alt="홈으로" href="./index.jsp">
 	</map>
 	<!-- 카테고리 관리 버튼 -->
 	<div id="manage">
-		<a href="./AdConfig.html">카테고리 관리</a>
+		<a href="./AdConfig.jsp">카테고리 관리</a>
 	</div>
 	<!-- 제목 -->
 	<div id="title">
@@ -114,7 +114,7 @@ option{
 	</form>
 	<!-- 메뉴 -->
 	<ul>
-		<li><a href="./index.html">전체 보기</a></li>
+		<li><a href="./index.jsp">전체 보기</a></li>
 		<li><a>액션</a></li>
 		<li><a>로맨스</a></li>
 		<li><a>SF</a></li>
