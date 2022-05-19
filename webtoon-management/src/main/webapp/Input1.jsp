@@ -132,7 +132,7 @@ fieldset{
 <!-- 글 영역 -->
 <article>
 <!-- 글 쓰기 -->
-<form action="ID-list.jsp" method="post" name="postfrm" id = "postfrm">
+<form action="index.jsp" method="post" name="postfrm" id = "postfrm">
 	<table border="1">
 		<tr>
 			<th colspan="2" style="background-color:#e6faff;">글 쓰기</th>
@@ -146,10 +146,10 @@ fieldset{
 			<td>
 				<select name="postgenre" id = "postgenre" style="width:100%">
 					<optgroup label="장르">
-						<option value="0">액션</option>
-						<option value="1">로맨스</option>
-						<option value="2">SF</option>
-						<option value="3">코믹</option>
+						<option value="액션">액션</option>
+						<option value="로맨스">로맨스</option>
+						<option value="SF">SF</option>
+						<option value="코믹">코믹</option>
 					</optgroup>
 				</select>
 			</td>

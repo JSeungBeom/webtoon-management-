@@ -68,6 +68,7 @@ li{
 
 }
 nav{
+	position:relative;
 	display:table-cell;
 	width:10%;
 }
