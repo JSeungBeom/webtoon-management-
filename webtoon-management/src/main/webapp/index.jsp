@@ -1,7 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8" import="java.sql.*"%>
 <%
 	request.setCharacterEncoding("utf-8");
+	Class.forName("org.mariadb.jdbc.Driver");
+	String DB_URL = "jdbc:mariadb://localhost:3306/webtoon?useSSL=false";
+	
+	String DB_USER = "admin";
+	String DB_PASSWORD= "1234";
+	
+	Connection con= null;
+	Statement stmt = null;
+	ResultSet rs   = null;
+	
+	try {
+	    con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); 
+
+	    stmt = con.createStatement();
+
+	    
+	    String query = "SELECT idx, title, genre, author, date FROM mainwebtoon"; 
+	
+	    rs = stmt.executeQuery(query);
+
 %>	
 <!DOCTYPE html>
 <html>
@@ -41,7 +60,6 @@ tr td{
 	width:200px;
 }
 </style>
-
 </head>
 <body>
 <!-- 머리글 영역 -->
@@ -103,37 +121,48 @@ tr td{
 	<!-- 등록 버튼 -->
 	<div id="insert" style="background-color:white; border-radius:5px;"><a href="./Input1.jsp" target="_blank">등록하기</a></div>
 	<!-- 웹툰 목록 출력 -->
+	<%
+		while(rs.next()){
+	%>
 	<div style = "margin:50px; display:inline;">
-		<jsp:useBean id="det" class="beans.Detail"/>
-		<jsp:setProperty property="*" name="det"/>
 		<table border="1" style="border-collapse:collapse; background-color:white;">
 			<tr>
 				<td colspan="2" style="height:200px;"></td>
 			</tr>
 			<tr>
 				<th>타이틀</th>
-				<td><jsp:getProperty property="posttitle" name="det"/></td>
+				<td><%=rs.getString("title")%></td>
 			</tr>
 			<tr>
 				<th>장르</th>
-				<td><jsp:getProperty property="postgenre" name="det"/></td>
+				<td><%=rs.getString("genre")%></td>
 			</tr>
 			<tr>
 				<th>작가명</th>
-				<td><jsp:getProperty property="author" name="det"/></td>
+				<td><%=rs.getString("author")%></td>
 			</tr>
 			<tr>
 				<th>게시일</th>
-				<td></td>
+				<td><%=rs.getDate("date")%></td>
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align:right;">
-				<input type="button" value="수정">
-				<input type="button" value="삭제">
+				<input type="button" value="수정" onclick="location.href = 'modify.jsp?idx=<%=rs.getInt("idx")%>'">
+				<input type="button" value="삭제" onclick="location.href = 'delete_do.jsp?idx=<%=rs.getInt("idx")%>'">
 				</td>
 			</tr>
 		</table>
 	</div>
+	<%
+		rs.close();
+		stmt.close();
+		con.close();
+	}
+	} catch(SQLException e){
+		out.println("err:"+e.toString());
+		return;
+	}
+	%>
 </article>
 </body>
 </html>

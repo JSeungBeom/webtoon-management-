@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String idx = request.getParameter("idx");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,7 +135,7 @@ fieldset{
 <!-- 글 영역 -->
 <article>
 <!-- 글 쓰기 -->
-<form action="save_do.jsp" method="post" name="postfrm" id = "postfrm">
+<form action="modify_do.jsp?idx=<%=Integer.parseInt(idx)%>" method="post" name="postfrm" id = "postfrm">
 	<table border="1">
 		<tr>
 			<th colspan="2" style="background-color:#e6faff;">글 쓰기</th>
