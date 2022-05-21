@@ -17,10 +17,10 @@
 	    stmt = con.createStatement();
 
 	    
-	    String query = "SELECT idx, title, genre, author, date FROM mainwebtoon"; 
-	
+	    String query = "SELECT idx, title, genre, author, authorsay, date, summary FROM mainwebtoon"; 
+		String ctquery = "SELECT name FROM genre";
 	    rs = stmt.executeQuery(query);
-
+		ResultSet ctrs = stmt.executeQuery(ctquery);
 %>	
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@
 <style>
 article{
 	position:relative;
-	left:20px;
+	left:50px;
 	display:table-cell;
 	width:80%;
 	height:800px;
@@ -110,10 +110,9 @@ tr td{
 	<!-- 메뉴 -->
 	<ul>
 		<li><a href="./index.jsp">전체 보기</a></li>
-		<li><a>액션</a></li>
-		<li><a>로맨스</a></li>
-		<li><a>SF</a></li>
-		<li><a>코믹</a></li>
+		<%while(ctrs.next()){ %>
+		<li><a><%=ctrs.getString("name") %></a></li>
+		<%} %>
 	</ul>
 </nav>
 <!-- 글 영역 -->
@@ -123,23 +122,29 @@ tr td{
 	<!-- 웹툰 목록 출력 -->
 	<%
 		while(rs.next()){
+			String dtitle = rs.getString("title");
+			String dgenre = rs.getString("genre");
+			String dauthor = rs.getString("author");
+			String dauthorsay = rs.getString("authorsay");
+			String dsummary = rs.getString("summary");
 	%>
 	<div style = "margin:50px; display:inline;">
 		<table border="1" style="border-collapse:collapse; background-color:white;">
 			<tr>
-				<td colspan="2" style="height:200px;"></td>
+				<td colspan="2" style="height:200px;" onclick="location.href='ID-list.jsp?title=<%=dtitle%>&genre=<%=dgenre%>&author=<%=dauthor%>&authorsay=<%=dauthorsay%>&summary=<%=dsummary%>'">
+				</td>
 			</tr>
 			<tr>
 				<th>타이틀</th>
-				<td><%=rs.getString("title")%></td>
+				<td><%=dtitle%></td>
 			</tr>
 			<tr>
 				<th>장르</th>
-				<td><%=rs.getString("genre")%></td>
+				<td><%=dgenre%></td>
 			</tr>
 			<tr>
 				<th>작가명</th>
-				<td><%=rs.getString("author")%></td>
+				<td><%=dauthor%></td>
 			</tr>
 			<tr>
 				<th>게시일</th>

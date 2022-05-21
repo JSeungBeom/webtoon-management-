@@ -52,11 +52,12 @@ fieldset{
 }
 
 ul{
-	top:-200px;
+	position:relative;
 	list-style-type:none;
 	margin:20px;
 	padding:0px;
 }
+
 
 li{
 	color:white;

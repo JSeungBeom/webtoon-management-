@@ -1,19 +1,5 @@
 
 <%@ page contentType="text/html; charset=UTF-8" import="java.sql.*"%>
-<%
-	request.setCharacterEncoding("utf-8");
-	Class.forName("org.mariadb.jdbc.Driver");
-	String DB_URL = "jdbc:mariadb://localhost:3306/webtoon?useSSL=false";
-	
-	try{
-	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
-	Statement stmt = con.createStatement();
-	
-	String sql = "SELECT idx, id, name, birth FROM genre";
-	
-	ResultSet rs = stmt.executeQuery(sql);
-
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,18 +7,20 @@
 <title>Webtoon World</title>
  <link rel="stylesheet" type="text/css" href="./basic.css">
 <style>
+input{
+	font-family:"굴림", serif;
+}
+td input[type="text"]{
+	width:90%;
+}
 article{
 	position:relative;
-	left:20px;
 	display:table-cell;
 	width:80%;
-	height:800px;
-	border:1px solid black;
 	border-radius:5px;
-	background-color:#e6faff;
+	padding-left:50px;
 }
 table{
-	background-color:white;
 	position:relative;
 	margin:50px;
 	border-collapse:collapse;
@@ -101,44 +89,25 @@ fieldset{
 	<!-- 메뉴 -->
 	<ul>
 		<li><a href="./index.jsp">전체 보기</a></li>
-		<%while(rs.next()) {%>
-		<li><a><%=rs.getString("name")%></a></li>
-		<% } 
-			rs.beforeFirst();
-		%>
 	</ul>
 </nav>
 <article>
-<!-- 등록 버튼 -->
-<div id="insert" style="background-color:white; border-radius:5px;"><a href="./AdInput.jsp" target="_blank">등록하기</a></div>
 <!--  카테고리 -->
-<table border="1" style="border-collapse:collapse;">
-	<tr>
-		<th>No</th>
-		<th>ID</th>
-		<th>이름</th>
-		<th>생성일자</th>
-		<th></th>
-		<th></th>
-	</tr>
-<%while(rs.next()){ %>
-	<tr>
-		<td><%=rs.getInt("idx")%></td>
-		<td><%=rs.getString("id")%></td>
-		<td><%=rs.getString("name")%></td>
-		<td><%=rs.getDate("birth")%></td>
-		<td><input type="button" value="수정" onclick="location.href='AdModify.jsp?idx=<%=rs.getInt("idx")%>'"></td>
-		<td><input type="button" value="삭제" onclick="location.href='cate_delete_do.jsp?idx=<%=rs.getInt("idx")%>'"></td>
-	</tr>
-<%} %>
-</table>
+<form action="cate_save_do.jsp" method="post" name="cateframe" id="cateframe">
+	<table border="1" style="border-collapse:collapse;">
+		<tr>
+			<th>카테고리 ID</th>
+			<td><input type="text" name="cateid" id="cateid"></td>
+		</tr>
+		<tr>
+			<th>카테고리 제목</th>
+			<td><input type="text" name="catename" id="catename"></td>
+		</tr>
+		<tr>
+		<td colspan="2" style="text-align:right;">
+				<input type="submit" value="등록">
+				<input type="reset" value="취소">
+		</tr>
+	</table>
+</form>
 </article>
-<%
-	rs.close();
-	stmt.close();
-	con.close();
-	}
-	catch(SQLException e){
-		out.print(e);
-	}
-%>

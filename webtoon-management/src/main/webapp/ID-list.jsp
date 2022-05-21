@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
-	String pgenre = request.getParameter("postgenre");
-	String ptitle = request.getParameter("posttitle");
+	String pgenre = request.getParameter("genre");
+	String ptitle = request.getParameter("title");
 	String pauthor = request.getParameter("author");
 	String pauthorsay = request.getParameter("authorsay");
-	String psummary = request.getParameter("postsummary");
+	String psummary = request.getParameter("summary");
 %>	
 <!DOCTYPE html>
 <html>

@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.sql.*"%>
 <%
 	String idx = request.getParameter("idx");
+	Class.forName("org.mariadb.jdbc.Driver");
+	
+	String DB_URL = "jdbc:mariadb://localhost:3306/webtoon?useSSL=false";
+	
+	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
+	Statement stmt = con.createStatement();
+	
+	String sql = "SELECT name FROM genre";
+	ResultSet rs = stmt.executeQuery(sql);
 %>
 <!DOCTYPE html>
 <html>
@@ -149,10 +158,9 @@ fieldset{
 			<td>
 				<select name="postgenre" id = "postgenre" style="width:100%">
 					<optgroup label="장르">
-						<option value="액션">액션</option>
-						<option value="로맨스">로맨스</option>
-						<option value="SF">SF</option>
-						<option value="코믹">코믹</option>
+					<%while(rs.next()){ %>
+						<option value=<%=rs.getString("name")%>><%=rs.getString("name")%></option>
+					<%} %>
 					</optgroup>
 				</select>
 			</td>
