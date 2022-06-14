@@ -2,19 +2,20 @@
 <%
 request.setCharacterEncoding("utf-8");
 
-String idx = request.getParameter("idx");
-
+String subidx = request.getParameter("subidx");
+int idx = Integer.parseInt(request.getParameter("idx"));
 try{
 	Class.forName("org.mariadb.jdbc.Driver");
 	String DB_URL ="jdbc:mariadb://localhost:3306/webtoon?useSSL=false";
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
 	String sql = "";
-	sql = "SELECT coverimg FROM mainwebtoon WHERE idx=?";
+	sql = "SELECT idx, coverimg, mainimg FROM subwebtoon WHERE subidx=?";
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	
-	pstmt.setInt(1, Integer.parseInt(idx));
+	pstmt.setInt(1, Integer.parseInt(subidx));
 	ResultSet rs = pstmt.executeQuery();
 	rs.next();
+	
 	String filename = rs.getString("coverimg");
 	
 	ServletContext context = getServletContext();
@@ -22,43 +23,28 @@ try{
 	File file = new File(realFolder + File.separator + filename);
 	file.delete();
 	
-	sql = "SELECT coverimg, mainimg FROM subwebtoon WHERE idx=?";
-	pstmt = con.prepareStatement(sql);
-	
-	pstmt.setInt(1, Integer.parseInt(idx));
-	rs = pstmt.executeQuery();
-	while(rs.next()){
-		filename = rs.getString("coverimg");
+	filename = rs.getString("mainimg");
 		file = new File(realFolder + File.separator + filename);
-		file.delete();
-		filename = rs.getString("mainimg");
-		file = new File(realFolder + File.separator + filename);
-		file.delete();
-	}
+	file.delete();
 	
-	sql = "DELETE FROM mainwebtoon WHERE idx=?";
+	sql = "DELETE FROM subwebtoon WHERE subidx=?";
 	pstmt = con.prepareStatement(sql);
-	pstmt.setInt(1, Integer.parseInt(idx));
+	pstmt.setInt(1, Integer.parseInt(subidx));
 	pstmt.executeUpdate();
-	
-	sql = "DELETE FROM subwebtoon WHERE idx=?";
-	pstmt = con.prepareStatement(sql);
-	pstmt.setInt(1, Integer.parseInt(idx));
-	pstmt.executeUpdate();
-	
 	pstmt.close();
 	con.close();
 	rs.close();
-} catch(ClassNotFoundException e){
+	} catch(ClassNotFoundException e){
 	out.print(e);
 	return;
-} catch(SQLException e){
+	} catch(SQLException e){
 	out.print(e);
 	return;
-} catch(Exception e){
+	} catch(Exception e){
 	e.getMessage();
 	return;
-}
-
-response.sendRedirect("index.jsp");
+	}
 %>
+<script>
+	location.href = "ID-list.jsp?idx=<%=idx%>"
+</script>

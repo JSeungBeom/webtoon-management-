@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.sql.*, 
-java.util.Calendar, java.text.SimpleDateFormat"%>
+java.util.*, java.text.SimpleDateFormat, beans.*"%>
 <%
 request.setCharacterEncoding("utf-8");
 
@@ -19,7 +19,13 @@ try {
 
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");   
 	
-	String sql = "INSERT INTO mainwebtoon(title, genre, author, authorsay, summary, date, password)VALUES(?, ?, ?, ?, ?, ?, ?)";
+	ServletContext context = getServletContext();
+	String realFolder = context.getRealPath("images");
+	
+	Collection <Part>parts = request.getParts();
+	MyMultiPart multiPart = new MyMultiPart(parts, realFolder);
+	
+	String sql = "INSERT INTO mainwebtoon(title, genre, author, authorsay, summary, date, password, coverimg)VALUES(?, ?, ?, ?, ?, ?, ?,?)";
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	
 	pstmt.setString(1, title);
@@ -29,7 +35,8 @@ try {
 	pstmt.setString(5, summary);
 	pstmt.setString(6, strToday);
 	pstmt.setString(7, pwd);
-
+	pstmt.setString(8, multiPart.getSavedFileName("coverimg"));
+	
 	pstmt.executeUpdate();
 	
 	pstmt.close();

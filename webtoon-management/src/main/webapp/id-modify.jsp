@@ -1,23 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.sql.*"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.*, java.sql.*, beans.*"%>
 <%
+	request.setCharacterEncoding("utf-8");
+	int idx = Integer.parseInt(request.getParameter("idx"));
+	int subidx = Integer.parseInt(request.getParameter("subidx"));
+	
 	ResultSet rs = null;
 
 	request.setCharacterEncoding("utf-8");
-	String idx = request.getParameter("idx");
 	Class.forName("org.mariadb.jdbc.Driver");
 	String DB_URL = "jdbc:mariadb://localhost:3306/webtoon?useSSL=false";
 	
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
-	String query = "SELECT * FROM mainwebtoon WHERE idx = ?";
-	PreparedStatement pstmt = con.prepareStatement(query);
-	pstmt.setInt(1, Integer.parseInt(idx));
-	Statement stmt = con.createStatement();
 	
-	String sql = "SELECT name FROM genre";
-	rs = stmt.executeQuery(sql);
-	ResultSet mrs = pstmt.executeQuery();
-	mrs.next();
+	String sql = "SELECT * FROM subwebtoon WHERE subidx=?";
+	PreparedStatement pstmt = con.prepareStatement(sql);
+	pstmt.setInt(1, subidx);
+	
+	rs = pstmt.executeQuery();
+	rs.next();
 	
 %>
 <!DOCTYPE html>
@@ -46,8 +46,9 @@ td input[type="text"]{
 	width:90%;
 }
 #container1{
+	text-align:center;
 	width:80%;
-	height:300px;
+	border:1px solid black;
 }
 .myclass1{
 	position:absolute;
@@ -71,36 +72,6 @@ fieldset{
 	width:155px;
 }
 </style>
-<script>
-	window.onload = function(){
-		document.getElementById("postfrm").onsubmit = function(){
-			var str="";
-			var obj = document.getElementById("posttitle");
-			str += "타이틀 : " + obj.value +  "\n";
-			
-			obj = document.getElementById("postgenre");
-			str += "장르 : " + obj.value + "\n";
-			
-			obj = document.getElementById("author");
-			str += "작가 명 : " + obj.value + "\n";
-			
-			obj = document.getElementById("authorsay");
-			str += "작가의 말 : " + obj.value + "\n";
-			
-			obj = document.getElementById("postimg");
-			str += "이미지 명 : " + obj.value + "\n";
-			
-			obj = document.getElementById("postpwd");
-			str += "비밀번호 : " + obj.value + "\n";
-			
-			obj = document.getElementById("postsummary");
-			str += "줄거리 : " + obj.value + "\n";
-			
-			alert(str);
-			return true;
-		}
-	}
-</script>
 </head>
 <body>
 <!-- 머리글 영역 -->	
@@ -158,50 +129,28 @@ fieldset{
 <!-- 글 영역 -->
 <article>
 <!-- 글 쓰기 -->
-<form action="modify_do.jsp?idx=<%=Integer.parseInt(idx)%>" method="post" name="postfrm" id = "postfrm" enctype="multipart/form-data">
+<form action="id-modify_do.jsp" method="post" name="postfrm" id = "postfrm" enctype="multipart/form-data">
+<input type="text" name="idx" id="idx" value=<%=idx %> style="display:none;">
+<input type="text" name="subidx" id="subidx" value=<%=subidx %> style="display:none;">
 	<table border="1">
 		<tr>
 			<th colspan="2" style="background-color:#e6faff;">글 쓰기</th>
 		</tr>
 		<tr>
 			<td style="background-color:#e6faff;">타이틀</td>
-			<td><input type="text" name="posttitle" id="posttitle" value="<%=mrs.getString("title")%>" required></td>
-		</tr>
-		<tr>
-			<td style="background-color:#e6faff;">장르</td>
-			<td>
-				<select name="postgenre" id = "postgenre" style="width:100%">
-					<optgroup label="장르">
-					<%while(rs.next()){ %>
-						<option value=<%=rs.getString("name")%>><%=rs.getString("name")%></option>
-					<%} %>
-					</optgroup>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td style="background-color:#e6faff;">작가 명</td>
-			<td><input type="text" id="author" name="author" value="<%=mrs.getString("author") %>" required></td>
-		</tr>
-		<tr>
-			<td style="background-color:#e6faff;">작가의 말</td>
-			<td><input type="text" id="authorsay" name="authorsay"  value="<%=mrs.getString("authorsay")%>"required></td>
+			<td><input type="text" name="posttitle" id="posttitle" value="<%=rs.getString("title")%>"required></td>
 		</tr>
 	</table>
 	<div class="myclass2">
-		줄거리
-	</div>
-		<!-- 비밀번호 입력 -->
-	<div class="myclass2" style="position:absolute; right:19%">
-		비밀번호 <input type="password" name="postpwd" id = "postpwd" required>
+		<input type="file" name="mainimg" id="mainimg" value="업로드/변경">
 	</div>
 	<!-- 만화 영역 -->
 	<div id="container1">
-		<textarea rows="20" style="width:100%; font-family:굴림체, serif" name = "postsummary" id = "postsummary" required><%=mrs.getString("summary") %></textarea>
+			<img src="./images/<%=rs.getString("mainimg")%>">
 	</div>
 	<!-- 이미지 업로드 -->
 <div class="myclass1">
-		<img src="./images/<%=mrs.getString("coverimg")%>" height="200px" width="200px"><br>	
+			<img src="./images/<%=rs.getString("coverimg")%>" width="200px" height="200px"><br>
 		<input style = "position:absolute; bottom:0px;" 
 		type="file" id = "coverimg" name="coverimg" value="업로드/변경">
 </div>

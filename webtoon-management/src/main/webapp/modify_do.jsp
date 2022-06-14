@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" import="java.sql.*, java.util.Calendar,
-java.text.SimpleDateFormat"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.sql.*, java.util.*, java.io.*"
+import="java.text.SimpleDateFormat, beans.*"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	String idx = request.getParameter("idx");
@@ -12,6 +12,12 @@ java.text.SimpleDateFormat"%>
 	String strToday = sdf.format(c1.getTime());
 	String pwd = request.getParameter("postpwd");
 	String summary = request.getParameter("postsummary");
+	
+	ServletContext context = getServletContext();
+	String realFolder = context.getRealPath("images");
+	
+	Collection<Part>parts = request.getParts();
+	MyMultiPart multiPart = new MyMultiPart(parts, realFolder);
 
 try{
 	Class.forName("org.mariadb.jdbc.Driver");
@@ -19,19 +25,46 @@ try{
 	
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
 	
-	String sql = "UPDATE mainwebtoon SET title=?, genre=?, author=?, authorsay=?, date=?, summary=?, password=? WHERE idx=?";
+	String sql = "";
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 	
-	PreparedStatement pstmt = con.prepareStatement(sql);
-	
-	pstmt.setString(1, title);
-	pstmt.setString(2, genre);
-	pstmt.setString(3, author);
-	pstmt.setString(4, authorsay);
-	pstmt.setString(5, strToday);
-	pstmt.setString(6, summary);
-	pstmt.setString(7, pwd);
-	pstmt.setInt(8, Integer.parseInt(idx));
-	
+	if(multiPart.getMyPart("coverimg") != null) { 
+		sql = "SELECT coverimg FROM mainwebtoon WHERE idx=?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, Integer.parseInt(idx));
+		rs = pstmt.executeQuery();
+		rs.next();
+		String oldFileName = rs.getString("coverimg");
+		File oldFile = new File(realFolder + File.separator + oldFileName);
+		oldFile.delete();
+		
+		sql = "UPDATE mainwebtoon SET title=?, genre=?, author=?, authorsay=?, summary=?, date=?, password=?, coverimg=? WHERE idx=?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, title);
+		pstmt.setString(2, genre);
+		pstmt.setString(3, author);
+		pstmt.setString(4, authorsay);
+		pstmt.setString(5, summary);
+		pstmt.setString(6, strToday);
+		pstmt.setString(7, pwd);
+		pstmt.setString(8, multiPart.getSavedFileName("coverimg"));
+		pstmt.setInt(9, Integer.parseInt(idx));
+		
+	} else {
+		sql = "UPDATE mainwebtoon SET title=?, genre=?, author=?, authorsay=?, summary=?, date=?, password=? WHERE idx=?";
+		pstmt = con.prepareStatement(sql);
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, title);
+		pstmt.setString(2, genre);
+		pstmt.setString(3, author);
+		pstmt.setString(4, authorsay);
+		pstmt.setString(5, summary);
+		pstmt.setString(6, strToday);
+		pstmt.setString(7, pwd);
+		pstmt.setInt(8, Integer.parseInt(idx));
+	}
+
 	pstmt.executeUpdate();
 	
 	pstmt.close();

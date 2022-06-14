@@ -11,15 +11,19 @@
 	Statement stmt = null;
 	ResultSet rs   = null;
 	
+	String genre = request.getParameter("genre");
 	try {
 	    con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); 
 
 	    stmt = con.createStatement();
 
 	    
-	    String query = "SELECT idx, title, genre, author, authorsay, date, summary, coverimg, password FROM mainwebtoon"; 
+	    String query = "SELECT * FROM mainwebtoon WHERE genre=?";
+	    PreparedStatement pstmt = con.prepareStatement(query);
+	    pstmt.setString(1, genre);
+	    
 		String ctquery = "SELECT name FROM genre";
-	    rs = stmt.executeQuery(query);
+	    rs = pstmt.executeQuery();
 		ResultSet ctrs = stmt.executeQuery(ctquery);
 %>	
 <!DOCTYPE html>

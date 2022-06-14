@@ -11,15 +11,25 @@
 	Statement stmt = null;
 	ResultSet rs   = null;
 	
+	String type = request.getParameter("type");
+	String search = request.getParameter("search");
 	try {
 	    con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); 
 
 	    stmt = con.createStatement();
-
-	    
-	    String query = "SELECT idx, title, genre, author, authorsay, date, summary, coverimg, password FROM mainwebtoon"; 
+		
+	    if(type.equals("제목")){
+			String sql = "SELECT * FROM mainwebtoon WHERE title LIKE ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + search + "%");
+		    rs = pstmt.executeQuery();
+	    } else{
+			String sql = "SELECT * FROM mainwebtoon WHERE author LIKE ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + search + "%");
+			rs = pstmt.executeQuery();
+	    }
 		String ctquery = "SELECT name FROM genre";
-	    rs = stmt.executeQuery(query);
 		ResultSet ctrs = stmt.executeQuery(ctquery);
 %>	
 <!DOCTYPE html>

@@ -74,8 +74,14 @@ fieldset{
 		Webtoon World
 	</div>
 	<!-- 검색 -->
-	<input type="text" name="search">
-	<img src="./images/search.png" alt="검색">
+	<form action="search.jsp" method="get" style="display:inline;">
+		<select name="type" id = "type" style="width:5%;">
+			<option value="작가명">작가명</option>
+			<option value="제목">제목</option>
+		</select>
+		<input type="text" name="search" style="margin-left:0px;">
+		<input type="image" src="./images/search.png" alt="검색">
+	</form>	
 </header>
 
 <!-- 로그인 & 메뉴 -->
@@ -98,14 +104,8 @@ fieldset{
 			Admin Logout</a>
 		</fieldset>
 	<% } %>
-	<!-- 메뉴 -->
 	<ul>
 		<li><a href="./index.jsp">전체 보기</a></li>
-		<%while(rs.next()) {%>
-		<li><a><%=rs.getString("name")%></a></li>
-		<% } 
-			rs.beforeFirst();
-		%>
 	</ul>
 </nav>
 <article>

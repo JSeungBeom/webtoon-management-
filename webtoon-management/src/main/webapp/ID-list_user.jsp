@@ -144,8 +144,6 @@ window.onload = function(){
 </nav>
 <!-- 글 영역 -->
 <article>
-	<!-- 등록 버튼 -->
-	<div id="insert" style="background-color:white; border-radius:5px; display:table-cell;"><a href="./Input2.jsp?idx=<%=idx%>" target="_blank">등록하기</a></div>
 	<table border="1">
 		<tr>
 			<th colspan="2" style="background-color:#e6faff;">요약 정보</th>
@@ -193,22 +191,16 @@ window.onload = function(){
 		<table border="1" style="border-collapse:collapse; background-color:white; position:static;">
 			<tr>
 				<td colspan="2">
-				<img src="./images/<%=rs.getString("coverimg")%>">
+				<a href="Sub-list.jsp?subidx=<%=rs.getInt("subidx")%>&idx=<%=idx%>"><img src="./images/<%=rs.getString("coverimg")%>"></a>
 				</td>
 			</tr>
 			<tr>
 				<th>타이틀</th>
-				<td><%=rs.getString("title")%></td>
+				<td><a href="Sub-list.jsp?subidx=<%=rs.getInt("subidx")%>&idx=<%=idx%>"><%=rs.getString("title")%></a></td>
 			</tr>
 			<tr>
 				<th>게시일</th>
 				<td><%=rs.getDate("date")%></td>
-			</tr>
-			<tr>
-				<td colspan="2" style="text-align:right;">
-				<input type="button" value="수정" onclick="location.href = 'id-modify.jsp?subidx=<%=rs.getInt("subidx")%>&idx=<%=idx%>'">
-				<input type="button" value="삭제" onclick="location.href = 'id-delete_do.jsp?subidx=<%=rs.getInt("subidx")%>&idx=<%=idx%>'">
-				</td>
 			</tr>
 		</table>
 	</div>
