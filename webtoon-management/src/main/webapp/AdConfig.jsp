@@ -104,9 +104,7 @@ fieldset{
 			Admin Logout</a>
 		</fieldset>
 	<% } %>
-	<ul>
-		<li><a href="./index.jsp">전체 보기</a></li>
-	</ul>
+
 </nav>
 <article>
 <!-- 등록 버튼 -->

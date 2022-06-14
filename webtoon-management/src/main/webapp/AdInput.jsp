@@ -92,10 +92,6 @@ fieldset{
 			Admin Logout</a>
 		</fieldset>
 	<% } %>
-	<!-- 메뉴 -->
-	<ul>
-		<li><a href="./index.jsp">전체 보기</a></li>
-	</ul>
 </nav>
 <article>
 <!--  카테고리 -->
