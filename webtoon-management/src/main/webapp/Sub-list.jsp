@@ -19,7 +19,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>웹툰 등록 / 수정 페이지</title>
+<title>Webtoon World</title>
 <link rel="stylesheet" type="text/css" href="./basic.css">
 <style>
 article{

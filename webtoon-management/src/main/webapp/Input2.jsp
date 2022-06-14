@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>웹툰 등록 / 수정 페이지</title>
+<title>Webtoon World</title>
 <link rel="stylesheet" type="text/css" href="./basic.css">
 <style>
 article{
@@ -32,6 +32,7 @@ td input[type="text"]{
 	text-align:center;
 	width:80%;
 	border:1px solid black;
+	height:500px;
 }
 .myclass1{
 	position:absolute;
@@ -128,7 +129,7 @@ fieldset{
 	</div>
 	<!-- 만화 영역 -->
 	<div id="container1">
-
+		
 	</div>
 	<!-- 이미지 업로드 -->
 <div class="myclass1">

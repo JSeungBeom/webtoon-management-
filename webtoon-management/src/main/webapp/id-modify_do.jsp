@@ -41,14 +41,13 @@ try{
 		oldFile = new File(realFolder + File.separator + oldFileName);
 		oldFile.delete();
 		
-		sql = "UPDATE subwebtoon SET title=?, date=?, password=?, coverimg=?, mainimg=? WHERE subidx=?";
+		sql = "UPDATE subwebtoon SET title=?, date=?, coverimg=?, mainimg=? WHERE subidx=?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, title);
 		pstmt.setString(2, strToday);
-		pstmt.setString(3, pwd);
-		pstmt.setString(4, multiPart.getSavedFileName("coverimg"));
-		pstmt.setString(5, multiPart.getSavedFileName("mainimg"));
-		pstmt.setInt(6, subidx);
+		pstmt.setString(3, multiPart.getSavedFileName("coverimg"));
+		pstmt.setString(4, multiPart.getSavedFileName("mainimg"));
+		pstmt.setInt(5, subidx);
 		
 	} else if(multiPart.getMyPart("coverimg") != null){ 
 		sql = "SELECT coverimg FROM subwebtoon WHERE subidx=?";
@@ -60,13 +59,12 @@ try{
 		File oldFile = new File(realFolder + File.separator + oldFileName);
 		oldFile.delete();
 		
-		sql = "UPDATE subwebtoon SET title=?, date=?, password=?, coverimg=? WHERE subidx=?";
+		sql = "UPDATE subwebtoon SET title=?, date=?, coverimg=? WHERE subidx=?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, title);
 		pstmt.setString(2, strToday);
-		pstmt.setString(3, pwd);
-		pstmt.setString(4, multiPart.getSavedFileName("coverimg"));
-		pstmt.setInt(5, subidx);
+		pstmt.setString(3, multiPart.getSavedFileName("coverimg"));
+		pstmt.setInt(4, subidx);
 	} else if(multiPart.getMyPart("mainimg") != null){
 		
 		sql = "SELECT mainimg FROM subwebtoon WHERE subidx=?";
@@ -78,21 +76,19 @@ try{
 		File oldFile = new File(realFolder + File.separator + oldFileName);
 		oldFile.delete();
 		
-		sql = "UPDATE subwebtoon SET title=?, date=?, password=?, mainimg=? WHERE subidx=?";
+		sql = "UPDATE subwebtoon SET title=?, date=?, mainimg=? WHERE subidx=?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, title);
 		pstmt.setString(2, strToday);
-		pstmt.setString(3, pwd);
-		pstmt.setString(4, multiPart.getSavedFileName("mainimg"));
-		pstmt.setInt(5, subidx);
+		pstmt.setString(3, multiPart.getSavedFileName("mainimg"));
+		pstmt.setInt(4, subidx);
 	}
 	else{
-		sql = "UPDATE subwebtoon SET title=?, date=?, password=? WHERE subidx=?";
+		sql = "UPDATE subwebtoon SET title=?, date=? WHERE subidx=?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, title);
 		pstmt.setString(2, strToday);
-		pstmt.setString(3, pwd);
-		pstmt.setInt(4, subidx);
+		pstmt.setInt(3, subidx);
 	}
 
 	pstmt.executeUpdate();

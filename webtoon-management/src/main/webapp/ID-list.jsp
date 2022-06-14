@@ -29,7 +29,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ID-list</title>
+<title>Webtoon World</title>
 <link rel="stylesheet" type="text/css" href="./basic.css">
 <style>
 article{
@@ -184,7 +184,9 @@ window.onload = function(){
 		type="file" accept="image/jpg, image/gif" id = "postimg" name="postimg" value="업로드/변경" disabled>
 </div>
 	<%
+		int count = 0;
 		while(rs.next()){
+		count++;
 	%>
 	<div style = "margin:50px; display:inline-block; position:relative;">
 		<table border="1" style="border-collapse:collapse; background-color:white; position:static;">
@@ -200,6 +202,9 @@ window.onload = function(){
 			<tr>
 				<th>게시일</th>
 				<td><%=rs.getDate("date")%></td>
+			</tr>
+			<tr>
+				<th colspan="2"><%=count%>화</th>
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align:right;">
