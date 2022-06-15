@@ -7,6 +7,7 @@
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
 	int idx = Integer.parseInt(request.getParameter("idx"));
 	
+	// idx와 일치하는 웹툰 레코드 가져오기
 	String sql = "SELECT * FROM mainwebtoon WHERE idx=?";
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	pstmt.setInt(1, idx);
@@ -20,6 +21,7 @@
 	String psummary = rs.getString("summary");
 	String coverimg = rs.getString("coverimg");
 	
+	// idx와 일치하는 회차 레코드 가져오기
 	sql = "SELECT * FROM subwebtoon WHERE idx=?";
 	pstmt = con.prepareStatement(sql);
 	pstmt.setInt(1, idx);

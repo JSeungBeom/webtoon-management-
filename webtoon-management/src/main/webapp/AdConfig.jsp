@@ -8,7 +8,7 @@
 	try{
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
 	Statement stmt = con.createStatement();
-	
+	// 장르 목록 가져오기
 	String sql = "SELECT idx, id, name, birth FROM genre";
 	
 	ResultSet rs = stmt.executeQuery(sql);

@@ -16,8 +16,9 @@
 
 	    stmt = con.createStatement();
 
-	    
-	    String query = "SELECT idx, title, genre, author, authorsay, date, summary, coverimg, password FROM mainwebtoon"; 
+	   	// 웹툰 정보 가져오기
+	    String query = "SELECT idx, title, genre, author, authorsay, date, summary, coverimg, password FROM mainwebtoon";
+	   	// 장르 목록 가져오기
 		String ctquery = "SELECT name FROM genre";
 	    rs = stmt.executeQuery(query);
 		ResultSet ctrs = stmt.executeQuery(ctquery);
@@ -60,6 +61,7 @@ tr td{
 }
 </style>
 <script>
+	// 수정 시, 패스워드 체크
 	function modpwd(pwd, index){
 		var pass = prompt("비밀번호를 입력하세요.", "");
 		if(pass == pwd){
@@ -69,7 +71,7 @@ tr td{
 			alert("비밀번호가 일치하지 않습니다.");
 		}
 	}
-	
+	// 삭제 시, 패스워드 체크
 	function delpwd(pwd, index){
 		var pass = prompt("비밀번호를 입력하세요.", "");
 		if(pass == pwd){
@@ -79,6 +81,7 @@ tr td{
 			alert("비밀번호가 일치하지 않습니다.");
 		}
 	}
+	// 회차 정보 수정 시, 패스워드 체크
 	function pwd(pwd, index){
 		var pass = prompt("비밀번호를 입력하세요.", "");
 		if(pass == pwd){

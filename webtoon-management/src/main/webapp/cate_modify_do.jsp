@@ -13,7 +13,7 @@ try{
 	String DB_URL = "jdbc:mariadb://localhost:3306/webtoon?useSSL=false";
 	
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
-	
+	// 장르 카테고리에서 수정하기
 	String sql = "UPDATE genre SET id=?, name=?, birth=? WHERE idx=?";
 	
 	PreparedStatement pstmt = con.prepareStatement(sql);

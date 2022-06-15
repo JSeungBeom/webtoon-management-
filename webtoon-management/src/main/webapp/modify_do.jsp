@@ -29,6 +29,7 @@ try{
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
+	// 대표 이미지 변경 시
 	if(multiPart.getMyPart("coverimg") != null) { 
 		sql = "SELECT coverimg FROM mainwebtoon WHERE idx=?";
 		pstmt = con.prepareStatement(sql);
@@ -51,7 +52,7 @@ try{
 		pstmt.setString(8, multiPart.getSavedFileName("coverimg"));
 		pstmt.setInt(9, Integer.parseInt(idx));
 		
-	} else {
+	} else { // 대표 이미지 변경 X
 		sql = "UPDATE mainwebtoon SET title=?, genre=?, author=?, authorsay=?, summary=?, date=?, password=? WHERE idx=?";
 		pstmt = con.prepareStatement(sql);
 		pstmt = con.prepareStatement(sql);

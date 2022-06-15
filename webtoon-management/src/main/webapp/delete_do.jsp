@@ -9,6 +9,7 @@ try{
 	String DB_URL ="jdbc:mariadb://localhost:3306/webtoon?useSSL=false";
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
 	String sql = "";
+	// 웹툰의 대표 이미지 삭제하기
 	sql = "SELECT coverimg FROM mainwebtoon WHERE idx=?";
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	
@@ -22,6 +23,7 @@ try{
 	File file = new File(realFolder + File.separator + filename);
 	file.delete();
 	
+	// 모든 회차의 이미지 삭제하기
 	sql = "SELECT coverimg, mainimg FROM subwebtoon WHERE idx=?";
 	pstmt = con.prepareStatement(sql);
 	
@@ -36,11 +38,13 @@ try{
 		file.delete();
 	}
 	
+	// 웹툰 DB에서 삭제하기
 	sql = "DELETE FROM mainwebtoon WHERE idx=?";
 	pstmt = con.prepareStatement(sql);
 	pstmt.setInt(1, Integer.parseInt(idx));
 	pstmt.executeUpdate();
 	
+	// 회차 DB에서 삭제하기
 	sql = "DELETE FROM subwebtoon WHERE idx=?";
 	pstmt = con.prepareStatement(sql);
 	pstmt.setInt(1, Integer.parseInt(idx));

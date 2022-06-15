@@ -12,6 +12,7 @@
 	
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
 	
+	// subidx와 일치하는 회차 레코드 가져오기
 	String sql = "SELECT * FROM subwebtoon WHERE subidx=?";
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	pstmt.setInt(1, subidx);

@@ -26,6 +26,7 @@ try{
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
+	// 대표 이미지와 본문 이미지 모두 변경 시
 	if(multiPart.getMyPart("coverimg") != null && multiPart.getMyPart("mainimg") != null) { 
 
 		sql = "SELECT coverimg, mainimg FROM subwebtoon WHERE subidx=?";
@@ -49,7 +50,7 @@ try{
 		pstmt.setString(4, multiPart.getSavedFileName("mainimg"));
 		pstmt.setInt(5, subidx);
 		
-	} else if(multiPart.getMyPart("coverimg") != null){ 
+	} else if(multiPart.getMyPart("coverimg") != null){  // 대표 이미지만 변경 시
 		sql = "SELECT coverimg FROM subwebtoon WHERE subidx=?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, subidx);
@@ -65,7 +66,7 @@ try{
 		pstmt.setString(2, strToday);
 		pstmt.setString(3, multiPart.getSavedFileName("coverimg"));
 		pstmt.setInt(4, subidx);
-	} else if(multiPart.getMyPart("mainimg") != null){
+	} else if(multiPart.getMyPart("mainimg") != null){ // 본문 이미지만 변경 시
 		
 		sql = "SELECT mainimg FROM subwebtoon WHERE subidx=?";
 		pstmt = con.prepareStatement(sql);
@@ -83,7 +84,7 @@ try{
 		pstmt.setString(3, multiPart.getSavedFileName("mainimg"));
 		pstmt.setInt(4, subidx);
 	}
-	else{
+	else{ // 이미지 변경 없을 시
 		sql = "UPDATE subwebtoon SET title=?, date=? WHERE subidx=?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, title);

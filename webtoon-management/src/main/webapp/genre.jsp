@@ -17,7 +17,7 @@
 
 	    stmt = con.createStatement();
 
-	    
+	    // 장르와 일치하는 웹툰 선택
 	    String query = "SELECT * FROM mainwebtoon WHERE genre=?";
 	    PreparedStatement pstmt = con.prepareStatement(query);
 	    pstmt.setString(1, genre);

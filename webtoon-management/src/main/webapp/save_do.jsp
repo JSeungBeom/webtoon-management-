@@ -24,7 +24,7 @@ try {
 	
 	Collection <Part>parts = request.getParts();
 	MyMultiPart multiPart = new MyMultiPart(parts, realFolder);
-	
+	// 웹툰 정보 레코드에 등록
 	String sql = "INSERT INTO mainwebtoon(title, genre, author, authorsay, summary, date, password, coverimg)VALUES(?, ?, ?, ?, ?, ?, ?,?)";
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	

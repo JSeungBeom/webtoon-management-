@@ -5,6 +5,7 @@ request.setCharacterEncoding("utf-8");
 String id = request.getParameter("id");
 String pwd = request.getParameter("pwd");
 
+// 아이디와 비밀번호가 일치하는지 체크
 if(id.equals("admin") && pwd.equals("1234")){
 	session.setAttribute("id", id);
 	response.sendRedirect("index.jsp");

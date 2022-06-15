@@ -9,6 +9,7 @@
 	String DB_URL = "jdbc:mariadb://localhost:3306/webtoon?useSSL=false";
 	
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
+	// idx와 일치하는 웹툰 레코드 가져오기
 	String query = "SELECT * FROM mainwebtoon WHERE idx = ?";
 	PreparedStatement pstmt = con.prepareStatement(query);
 	pstmt.setInt(1, Integer.parseInt(idx));

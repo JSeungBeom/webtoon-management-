@@ -21,6 +21,7 @@
 	
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
 	
+	// 회차 정보 레코드에 등록하기
 	String sql = "INSERT INTO subwebtoon(idx, title, date, coverimg, mainimg) VALUES(?,?,?,?,?)";
 	
 	PreparedStatement pstmt = con.prepareStatement(sql);

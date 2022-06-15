@@ -18,12 +18,12 @@
 
 	    stmt = con.createStatement();
 		
-	    if(type.equals("제목")){
+	    if(type.equals("제목")){ // 콤보박스 '제목' 선택 시, 검색 내용 포함하는 레코드
 			String sql = "SELECT * FROM mainwebtoon WHERE title LIKE ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + search + "%");
 		    rs = pstmt.executeQuery();
-	    } else{
+	    } else{ // 콤보박스 '저자' 선택 시, 검색 내용 포함하는 레코드
 			String sql = "SELECT * FROM mainwebtoon WHERE author LIKE ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + search + "%");

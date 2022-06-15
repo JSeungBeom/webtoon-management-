@@ -9,6 +9,7 @@
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
 	Statement stmt = con.createStatement();
 	
+	// 장르 목록 가져오기
 	String sql = "SELECT name FROM genre";
 	ResultSet rs = stmt.executeQuery(sql);
 %>
@@ -63,36 +64,6 @@ fieldset{
 	width:155px;
 }
 </style>
-<script>
-	window.onload = function(){
-		document.getElementById("postfrm").onsubmit = function(){
-			var str="";
-			var obj = document.getElementById("posttitle");
-			str += "타이틀 : " + obj.value +  "\n";
-			
-			obj = document.getElementById("postgenre");
-			str += "장르 : " + obj.value + "\n";
-			
-			obj = document.getElementById("author");
-			str += "작가 명 : " + obj.value + "\n";
-			
-			obj = document.getElementById("authorsay");
-			str += "작가의 말 : " + obj.value + "\n";
-			
-			obj = document.getElementById("postimg");
-			str += "이미지 명 : " + obj.value + "\n";
-			
-			obj = document.getElementById("postpwd");
-			str += "비밀번호 : " + obj.value + "\n";
-			
-			obj = document.getElementById("postsummary");
-			str += "줄거리 : " + obj.value + "\n";
-			
-			alert(str);
-			return true;
-		}
-	}
-</script>
 </head>
 <body>
 <!-- 머리글 영역 -->	

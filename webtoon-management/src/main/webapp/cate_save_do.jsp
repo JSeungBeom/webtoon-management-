@@ -15,6 +15,7 @@ try {
 
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");   
 	
+	// 장르 카테고리에 추가하기
 	String sql = "INSERT INTO genre(id, name, birth)VALUES(?, ?, ?)";
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	
